@@ -139,12 +139,14 @@ ORDER BY name ASC; """, conn2)
 # Replace None with your code
 df_4_oldest = pd.read_sql("""
 SELECT name, age, breed
-FROM dogs
-ORDER BY age DESC
-LIMIT 4;
+FROM (
+    SELECT name, age, breed
+    FROM dogs
+    ORDER BY age DESC
+    LIMIT 4
+)
+ORDER BY breed ASC;
 """, conn2)
-
-df_4_oldest = df_4_oldest.sort_values('breed').reset_index(drop=True)
 
 # %% [markdown]
 # ## Part 4: Aggregation
@@ -205,7 +207,7 @@ FROM babe_ruth_stats;
 # %%
 # CodeGrade step11
 # Replace None with your code
-df_ruth_stats= pd.read_sql("""
+df_teams_years = pd.read_sql("""
 SELECT team, COUNT(DISTINCT year) AS number_years FROM babe_ruth_stats GROUP BY team; """, conn3)
 
 
