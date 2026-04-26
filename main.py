@@ -52,6 +52,11 @@ df_no_moons = pd.read_sql("""SELECT * FROM planets WHERE num_of_moons = 0; """, 
 # ### Step 2
 # Return the name and mass of each planet that has a name with exactly 7 letters. Avoid hard coding this filter subset as much as possible.
 
+# %%
+# CodeGrade step2
+# Replace None with your code
+df_name_seven = pd.read_sql("""SELECT name, mass FROM planets WHERE LENGTH(name) = 7; """, conn1)
+
 # %% [markdown]
 # ## Part 2: Advanced Filtering
 
@@ -112,7 +117,7 @@ pd.read_sql("SELECT * FROM dogs;", conn2)
 # %%
 # CodeGrade step6
 # Replace None with your code
-df_hungry = pd.read_sql("""SELECT * FROM dogs WHERE hungry = 1; """, conn2)
+df_hungry = pd.read_sql("""SELECT name, age, breed FROM dogs WHERE hungry = 1 ORDER BY age ASC; """, conn2)
 
 # %% [markdown]
 # ### Step 7
@@ -138,6 +143,8 @@ FROM dogs
 ORDER BY age DESC
 LIMIT 4;
 """, conn2)
+
+df_4_oldest = df_4_oldest.sort_values('breed').reset_index(drop=True)
 
 # %% [markdown]
 # ## Part 4: Aggregation
@@ -208,7 +215,7 @@ SELECT team, COUNT(DISTINCT year) AS number_years FROM babe_ruth_stats GROUP BY 
 # For each team that Babe Ruth played on and averged over 200 at bats with, return the team name and average number of at bats, aliased as 'average_at_bats'.
 
 # %%
-# CodeGrade step1
+# CodeGrade step12
 # Replace None with your code
 df_at_bats = pd.read_sql("""
 SELECT team, AVG(at_bats) AS average_at_bats
