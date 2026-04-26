@@ -198,8 +198,8 @@ FROM babe_ruth_stats;
 # %%
 # CodeGrade step11
 # Replace None with your code
-df_ruth_teams= pd.read_sql("""
-SELECT team, COUNT(DISTINCT year) AS number_years FROM babe_ruth GROUP BY team; """, conn3)
+df_ruth_stats= pd.read_sql("""
+SELECT team, COUNT(DISTINCT year) AS number_years FROM babe_ruth_stats GROUP BY team; """, conn3)
 
 
 # %% [markdown]
@@ -212,7 +212,7 @@ SELECT team, COUNT(DISTINCT year) AS number_years FROM babe_ruth GROUP BY team; 
 # Replace None with your code
 df_at_bats = pd.read_sql("""
 SELECT team, AVG(at_bats) AS average_at_bats
-FROM babe_ruth
+FROM babe_ruth_stats
 GROUP BY team
 HAVING AVG(at_bats) > 200;
 """, conn3)
